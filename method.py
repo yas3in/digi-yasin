@@ -19,7 +19,7 @@ class Members:
         pass
 
         
-    def date(self, month):
+    def get_month(self, month):
         match month: 
             case 1:
                 return "فروردین"

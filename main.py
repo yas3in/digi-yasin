@@ -1,6 +1,6 @@
 from local_setting import *
 from pyrogram import Client, filters
-from method import Owner
+from method import Owner, Members
 import jdatetime
 
 
@@ -18,8 +18,10 @@ async def echo(client, message):
 async def manage(client, message):
     admin = Owner(message.from_user.id)
     n = jdatetime.date.today()
-    if message.text == "تاریخ":
-        await message.reply(f"امروز: {n.day} - {n.month} - {n.year}")
+    cli = Members()
+    month = cli.get_month(n.month)
+    if message.text == "تاریخ" or "date":
+        await message.reply(f"امروز:\n {n.day} - {month} - {n.year} - {n.jmonth}")
     elif message.text == "ban" and admin.ban() == True:
         await message.reply("hello")
     
